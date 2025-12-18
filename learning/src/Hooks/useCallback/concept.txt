@@ -1,0 +1,47 @@
+useCallback is a React Hook used to memoize a function so that it does not get recreated on every render.
+
+
+Why do we need useCallback?
+
+In React, functions are re-created on every render.
+This can cause:
+
+Unnecessary re-renders of child components
+
+Performance issues in large apps
+
+useCallback returns the same function reference unless its dependencies change.
+
+
+
+
+| Normal Function           | useCallback              |
+| ------------------------- | ------------------------ |
+| New function every render | Same function reference  |
+| May cause re-renders      | Prevents re-renders      |
+| Simple logic              | Performance optimization |
+
+
+
+Interview One-Liner ⭐
+
+useCallback is used to memoize functions to prevent unnecessary re-creation and re-rendering of components.
+
+
+👉 Memoize a function =
+React stores the function in memory and returns the same function again on the next render if dependencies haven’t changed.
+
+
+
+function demo() {
+  return () => console.log("Hello");
+}
+-------❌ New function created every time -----
+
+
+
+const demo = useCallback(() => {
+  console.log("Hello");
+}, []);
+
+✅ Same function reused on every render
