@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import "./style.css";
+
 export const UseRff = () => {
   const username = useRef("");
 
@@ -59,3 +60,26 @@ export const FormHandling = () => {
     </>
   );
 };
+
+ export const ScrollExample = () => {
+  const sectionRef = useRef(null);
+
+  const scrollToSection = () => {
+    sectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <>
+      <button className="scroll-btn" onClick={scrollToSection}>
+        Go to Section
+      </button>
+
+      <div className="spacer"></div>
+
+      <div ref={sectionRef} className="target-section">
+        Target Section
+      </div>
+    </>
+  );
+}
+

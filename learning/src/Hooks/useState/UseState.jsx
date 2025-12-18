@@ -15,8 +15,8 @@ const UseState = () => {
 
     console.log(userDetails);
 
-    setusername("")
-    setpassword("")
+    setusername("");
+    setpassword("");
   };
 
   return (
