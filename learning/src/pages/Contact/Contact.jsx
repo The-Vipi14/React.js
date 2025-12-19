@@ -1,16 +1,12 @@
 import React from 'react'
 
-const Home = () => {
+const Contact = () => {
   return (
-    <>
-    <div style={styles.container}>
-      <h1>Home page</h1>
-    </div>
-    </>
+    <div style={styles.container}><h1>Contact page</h1></div>
   )
 }
 
-export default Home;
+export default Contact
 
 const styles = {
    container :{
