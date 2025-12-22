@@ -1,0 +1,67 @@
+useContext is a react Hook that allows you to access the value of a context anywhere in your component tree without having to pass props manually through every level (prop drilling)
+
+simple steps to setup context api and access data globally.
+
+setup with example theme:
+
+stpe 1: 
+
+create files: 1. ThemeContext.jsx (where you create a context)
+              2. UseContext.jsx (any child files, where you will use)
+              3.  App.jsx (where you will wrap all child components where you want to access the data with context)
+
+
+//--------------------------- ThemeContext.jsx ---------------------------//
+
+                import {createContext} from 'react'
+                const ThemeContext = createContext();
+
+                export default ThemeContext;
+
+
+//------------------------------- UseContext.jsx (Child component) -----------------//
+
+
+                        import {useContext} from 'react'
+                        import ThemeContext from './Context'
+
+                        const UseContext = () => {
+                            const theme = useContext(ThemeContext)
+                          return (
+                          <h1>{theme}</h1>
+                          )
+                        }
+
+                        export default UseContext;
+
+
+
+//------------------------------------ App.jsx -------------------------// 
+                        
+                        import ThemeContext from "./Context";
+                        import UseContext from "./UseContext";
+
+                        const ContextApp = () => {
+                          const theme = "dark";
+                          return (
+                            <ThemeContext.Provider value={theme}>
+                              <UseContext />
+                            </ThemeContext.Provider>
+                          );
+                        };
+
+                        export default ContextApp;
+
+
+✅✅---------------------------📝----- key points ------📝-------------------------------🔯🔯
+
+createContext -->> Creates a Context Object
+
+Context.Provider -->> Wraps componets and Provides context value.
+
+useContext ->> Accesses the context value directly without props
+
+Changes in the Provider value automatically updates all consuming components.
+
+
+
