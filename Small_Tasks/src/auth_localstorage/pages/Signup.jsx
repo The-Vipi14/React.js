@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useContext, useState } from "react";
 import userContext from "../context/userContext";
 
 const Signup = () => {
   const navigator = useNavigate();
-  const { isLoggedIn, database } = useContext(userContext);
+  const { isLoggedIn, setIsLoggedIn, loggedInuser, setLoggedInuser, database } =
+    useContext(userContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -32,11 +33,20 @@ const Signup = () => {
       return;
     } else {
       const updatedDataBase = [...database, newUser];
+      const loggedInUser = localStorage.setItem(
+        "LoggedInUser",
+        JSON.stringify(newUser)
+      );
+      // setLoggedInuser(newUser);
+      // console.log(loggedInuser);
       localStorage.setItem("dataBase", JSON.stringify(updatedDataBase));
       toast.success("user created successfully");
       setEmail("");
       setPassword("");
       setUsername("");
+
+      localStorage.setItem("isLoggedIn", JSON.stringify(true));
+
       navigator("/");
     }
   };
@@ -98,6 +108,7 @@ const Signup = () => {
         >
           Create
         </button>
+        <Link to={"/login"}>Already have an account ? login</Link>
       </form>
     </>
   );

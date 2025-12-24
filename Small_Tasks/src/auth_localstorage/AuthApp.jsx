@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 const AuthApp = () => {
   const [loggedInuser, setLoggedInuser] = useState({});
@@ -18,6 +19,8 @@ const AuthApp = () => {
     console.log(database);
     const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
     setIsLoggedIn(loginStatus);
+    const loggedInUser = JSON.parse(localStorage.getItem("LoggedInUser"));
+    setLoggedInuser(loggedInUser);
   }, []);
 
   // useEffect(() => {
@@ -27,7 +30,16 @@ const AuthApp = () => {
   return (
     <>
       <BrowserRouter>
-        <userContext.Provider value={{ isLoggedIn, loggedInuser, database }}>
+        <userContext.Provider
+          value={{
+            isLoggedIn,
+            setIsLoggedIn,
+            loggedInuser,
+            setLoggedInuser,
+            database,
+          }}
+        >
+          <Navbar />
           <Routes>
             <Route path={"/"} element={<Home />} />
             <Route path={"/login"} element={<Login />} />
